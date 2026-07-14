@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
   // 3.2 บอกเบราว์เซอร์ของผู้ใช้ว่า สิ่งที่ส่งกลับไปคือไฟล์ข้อความแบบ HTML และรองรับภาษาไทย (utf-8)
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
-  // 3.3 ส่งข้อมูลหน้าเว็บกลับไปหาผู้ใช้ (ตกแต่งสไตล์ พาสเทลสีชมพู พร้อมการ์ตูนน่ารักๆ)
+  // 3.3 ส่งข้อมูลหน้าเว็บกลับไปหาผู้ใช้ (ตกแต่งสไตล์ พาสเทลสีชมพู พร้อม Hello Kitty ขยับได้)
   res.end(`
     <!DOCTYPE html>
     <html lang="th">
@@ -46,19 +46,25 @@ const server = http.createServer((req, res) => {
                 width: 90%;
                 border: 2px solid #fff;
             }
-            .avatar {
+            
+            /* สไตล์สำหรับอนิเมชั่น Kitty */
+            .kitty-container {
                 width: 120px;
                 height: 120px;
-                background-color: #ffe5ec;
-                border-radius: 50%;
                 margin: 0 auto 20px auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 65px;
-                box-shadow: 0 8px 16px rgba(255, 154, 162, 0.3);
-                animation: float 3s ease-in-out infinite;
+                animation: floatKitty 3s ease-in-out infinite; /* ใส่แอนิเมชันที่นี่ */
             }
+
+            .kitty-icon {
+                font-size: 80px;
+                /* ใช้ SVG หรือรูปภาพที่คุมโทนชมพู (ในที่นี้ใช้อีโมจิที่ใกล้เคียงที่สุด) */
+                color: #ff758f;
+                filter: drop-shadow(0 5px 10px rgba(255, 117, 143, 0.3));
+            }
+
             h1 {
                 font-size: 1.6rem;
                 color: #ff758f;
@@ -101,11 +107,14 @@ const server = http.createServer((req, res) => {
                 display: inline-block;
                 animation: blink 1.5s infinite;
             }
-            @keyframes float {
+
+            /* 정의กำหนดแอนิเมชันขยับขึ้นลง (Floating Effect) */
+            @keyframes floatKitty {
                 0% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
+                50% { transform: translateY(-15px); } /* ขยับขึ้น 15px */
                 100% { transform: translateY(0px); }
             }
+
             @keyframes blink {
                 0% { opacity: 0.4; }
                 50% { opacity: 1; }
@@ -115,7 +124,8 @@ const server = http.createServer((req, res) => {
     </head>
     <body>
         <div class="card">
-            <div class="avatar">🌸</div>
+            <div class="kitty-container">
+                <span class="kitty-icon">🐱</span> </div>
             <h1>สวัสดีค่ะ! นี่คือ Web Server ของ</h1>
             <div class="student-id">นางสาว หทัยภัทร อินสำราญ<br>69319010571</div>
             <p>เครื่องแม่ข่ายทํางานปกติบนระบบ Railway แล้วค่ะ!</p>
