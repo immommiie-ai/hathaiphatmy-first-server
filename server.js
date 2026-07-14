@@ -125,7 +125,7 @@ const server = http.createServer((req, res) => {
     <body>
         <div class="card">
             <div class="kitty-container">
-                <span class="kitty-icon">🐱</span> </div>
+                <span class="kitty-icon">🐈</span> </div>
             <h1>สวัสดีค่ะ! นี่คือ Web Server ของ</h1>
             <div class="student-id">นางสาว หทัยภัทร อินสำราญ<br>69319010571</div>
             <p>เครื่องแม่ข่ายทํางานปกติบนระบบ Railway แล้วค่ะ!</p>
